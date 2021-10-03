@@ -13,4 +13,4 @@ app.use(cors())
 app.use(express.json())
 app.use("/", todoRoutes)
 
-app.listen(3001, () => console.log("connected on port 3001"))
+app.listen(5050, () => console.log("connected on port 3001"))

@@ -6,26 +6,26 @@ const router = express.Router()
 
 router.get("/todos", async (req, res) => {
   const todo = await Todo.find()
-  res.status(200).json({ status: "Success", data: { todo } })
-
+  // res.status(200).json({ status: "Success", data: { todo } })
+  res.json(todo)
 })
 
 router.post("/todos/new", async (req, res) => {
   const todo = await new Todo(req.body).save()
-  res.status(201).json({ status: "Success", data: { todo } })
+  res.json(todo)
 
 })
 
 router.delete("/todos/delete/:id", async (req, res) => {
   const todo = await Todo.findByIdAndDelete(req.params.id)
-  res.status(200).json({ status: "Success", data: { todo } })
+  res.json(todo)
 })
 
-router.put("/todos/complete/:id", async (req, res) => {
+router.get("/todos/complete/:id", async (req, res) => {
   const todo = await Todo.findById(req.params.id)
-  todo.complete = !todo.complete
+  todo.completed = !todo.completed
   todo.save()
-  res.status(200).json({ status: "Success", data: { todo } })
+  res.json(todo)
 })
 
 module.exports = router
